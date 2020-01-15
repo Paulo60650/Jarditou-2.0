@@ -38,7 +38,6 @@ check.addEventListener("click", function verif(event)
         document.getElementById("errPrenom").textContent = "";
     }
     // Controle de la date de naissance au sein du formulaire
-    alert(date)
     if(!birth.test(date))
     {
         document.getElementById("errDate").textContent = "Date de naissance non conforme";
