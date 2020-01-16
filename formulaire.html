@@ -101,7 +101,6 @@
               <p>
               <label for="sujet">Sujet* :</label> 
               <select name="sujet" id="sujet">
-                <!-- déclaration des valeur renvoyer par la balise <select> -->
               <option value="1">Choisissez</option>
               <option value="2">Mes commandes</option>
               <option value="3">Question sur un produit</option>
@@ -109,12 +108,12 @@
               <option value="5">Autres</option>
           </select><br>
           <p id="errSujet" class="Erreur"></p> 
-          <label for="question">Votre question* :</label><textarea id="question" name="question" id="" cols="20" rows="2"></textarea>
+          <label for="question">Votre question* :</label> <textarea class="form-control" id="question" aria-label="With textarea"></textarea>
           <p id="errQuest" class="Erreur"></p>
           </p>
           </fieldset>
           <p>
-          <input type="checkbox" name="J'accepte" id="accept" required> J'accepte le traitement informatique de ce formulaire<br>
+          <input type="checkbox" class="form-check-input" id="accept"  checked> J'accepte le traitement informatique de ce formulaire<br>
           <p id="errAccept" class="Erreur"></p>
           </p>
           <input id="envoie" class="btn btn-primary" type="submit" value="Envoyer">

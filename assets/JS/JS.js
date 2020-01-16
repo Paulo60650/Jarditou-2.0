@@ -32,6 +32,8 @@ check.addEventListener("click", function verif(event)
     var ville= document.getElementById("ville").value;
     var email = document.getElementById("mail").value;
     var sujet = document.getElementById("sujet").value;
+    var accept = document.getElementById("accept").checked;
+    console.log(accept);
     var question = document.getElementById("question").value;
     // Controle du nom au sein de mon formulaire 
     if (!alpha.test(nom))
@@ -127,6 +129,17 @@ check.addEventListener("click", function verif(event)
     else
     {
         document.getElementById("errSujet").textContent = "";
+    }
+    // Controle de la valeur renvoyer par la checkbox 
+    // Meme procédé que précédemment
+    if(accept != true)
+    {
+        document.getElementById("errAccept").textContent = "Veuillez cocher cette case";
+        event.preventDefault();
+    }
+    else
+    {
+        document.getElementById("errAccept").textContent = "";
     }
     // Controle de la question au sein du formulaire
     // Si rien n'est écrit dans la balise textarea qui a l'id "question" on exécute
