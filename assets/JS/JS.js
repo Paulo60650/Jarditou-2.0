@@ -15,17 +15,22 @@ check.addEventListener("click", function verif(event)
     // de l'input type date .On demande ainsi les 4 chiffres de l'année suivi d'un "-",puis
     // on controle les 2 chiffres correspondant au mois suivi d'un "-" et enfin les 2 chiffres
     // correspondant au jour
-    var cp = /(^[0-9]{5}$)/;
+    var cp = /(^[0-9]{5}$)|^$/;
     // regex controlant le code postal, on controle s'il y a bien 5 chiffres et uniquemnt des chiffres
-    var adr = /(^[0-9]+[a-zA-Z-\s]+$)/;
+    // et une prise en compte du champ vide car non obligatoire
+    var adr = /(^[0-9]+[a-zA-Z-\s]+$)|^$/;
     // regex controlant l'adresse , il doit y avoir au moins 1 chiffre suivi de au moins
-    // 1 caractère alphabétique
+    // 1 caractère alphabétique et une prise en compte du champ vide car non obligatoire
+    var city =  /(^[A-Z]+[a-zA-Zéèêëôœîïûüàáâæç-\s]+$)|^$/;
+    // regex controlant la ville , le meme que alpha mais prenant en compte un champ vide car non obligatoire
 
     // Déclarations de toutes les variables qui seront testées avec mes regex 
     // Les valeurs sont récupérées grace à la fonction getElementById  qui va chercher la valeur 
     // de retour des id correspondant dans la page HTML 
     var nom = document.getElementById("nom").value;
     var prenom = document.getElementById("prenom").value;
+    var sexe = document.getElementById("inlineRadio1").checked;
+    var sexe2 = document.getElementById("inlineRadio2").checked;
     var date = document.getElementById("date").value;
     var codepost = document.getElementById("codepost").value;
     var adresse = document.getElementById("adresse").value;
@@ -33,7 +38,6 @@ check.addEventListener("click", function verif(event)
     var email = document.getElementById("mail").value;
     var sujet = document.getElementById("sujet").value;
     var accept = document.getElementById("accept").checked;
-    console.log(accept);
     var question = document.getElementById("question").value;
     // Controle du nom au sein de mon formulaire 
     if (!alpha.test(nom))
@@ -62,6 +66,17 @@ check.addEventListener("click", function verif(event)
     else
     {
         document.getElementById("errPrenom").textContent = "";
+    }
+    // Controle de l'état des booleans correspondant au sexe au sein du formulaire
+    if(sexe == false && sexe2 == false)
+    // Si les 2 booleans retourne false je retre dans la condition et affiche un message d'erreur
+    {
+        document.getElementById("errSexe").textContent = "Ce champ est obligatoire";
+    }
+    else
+    // Si un des 2 booleans est true le message ne s'affiche
+    {
+        document.getElementById("errSexe").textContent = "";
     }
     // Controle de la date de naissance au sein du formulaire
     // Meme procédé que précédemment
@@ -98,7 +113,7 @@ check.addEventListener("click", function verif(event)
     }
     // Controle de la ville au sein du formulaire
     // Meme procédé que précédemment
-    if (!alpha.test(ville))
+    if (!city.test(ville))
     {
         document.getElementById("errVille").textContent = "Utilisez uniquement des caractères alphabétiques";
         event.preventDefault();
